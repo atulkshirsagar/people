@@ -4,26 +4,38 @@ module.exports = function(server) {
   // have to be repeated for each end point.
   server.namespace('/api', function() {
 
-    // Return fixture data for '/api/posts/:id'
-    server.get('/posts/:id', function(req, res) {
-      var post = {
-        "post": {
-          "id": 1,
-          "title": "Rails is omakase",
-          "comments": ["1", "2"],
-          "user" : "dhh"
-        },
+    console.log("/api");
 
-        "comments": [{
-          "id": "1",
-          "body": "Rails is unagi"
-        }, {
-          "id": "2",
-          "body": "Omakase O_o"
-        }]
+    server.get('/people', function(req, res) {
+      console.log("/people");
+
+      var people = {
+        "person": [{
+                  "id": 1,
+                  "fname": "Atul",
+                  "lname": "Kshirsagar",
+                },{
+                  "id": 2,
+                  "fname": "Swaminathan",
+                  "lname": "Saikumar",
+                }]
       };
 
-      res.send(post);
+      res.send(people);
+    });
+
+    // Return fixture data for '/api/people/:id'
+    server.get('/people/:id', function(req, res) {
+      console.log("/people/:id");
+      var person = {
+        "person": {
+          "id": 1,
+          "fname": "Atul",
+          "lname": "Kshirsagar",
+        }
+      };
+
+      res.send(person);
     });
   });
 };

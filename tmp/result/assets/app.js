@@ -2,7 +2,9 @@ define("appkit/adapters/application",
   ["exports"],
   function(__exports__) {
     "use strict";
-    __exports__["default"] = DS.FixtureAdapter.extend();
+    __exports__["default"] = DS.RESTAdapter.extend({
+    	namespace: 'api'
+    });
   });
 define("appkit/app", 
   ["ember/resolver","ember/load-initializers","exports"],
@@ -66,6 +68,19 @@ define("appkit/initializers/inject-store-into-component",
       }
     };
   });
+define("appkit/models/person", 
+  ["exports"],
+  function(__exports__) {
+    "use strict";
+    var attr = DS.attr;
+
+    var Person = DS.Model.extend({
+    	fname: attr(),
+    	lname: attr()
+    });
+
+    __exports__["default"] = Person;
+  });
 define("appkit/router", 
   ["exports"],
   function(__exports__) {
@@ -75,9 +90,14 @@ define("appkit/router",
     Router.map(function() {
       this.route('component-test');
       this.route('helper-test');
-      // this.resource('posts', function() {
-      //   this.route('new');
-      // });
+      this.resource('people', function(){
+      	// this.resource('person', {path: '/:person_id'});
+      });
+
+     //  , function(){
+    	// this.route('edit');	
+    	// this.route('new');
+     //  });
     });
 
     __exports__["default"] = Router;
@@ -110,7 +130,25 @@ define("appkit/routes/index",
     "use strict";
     __exports__["default"] = Ember.Route.extend({
       model: function() {
-        return ['red', 'yellow', 'blue'];
+      	var people = [{
+                      "id": 1,
+                      "fname": "Atul",
+                      "lname": "Kshirsagar",
+                    }];
+      	var m = this.store.find('person');
+        return m;
+
+       // return people;
+      }
+    });
+  });
+define("appkit/routes/person", 
+  ["exports"],
+  function(__exports__) {
+    "use strict";
+    __exports__["default"] = Ember.Route.extend({
+      model: function(params) {
+        return this.store.find('person', params.person_id);
       }
     });
   });
