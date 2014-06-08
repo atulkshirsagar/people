@@ -8,13 +8,11 @@ define("appkit/router",
       this.route('component-test');
       this.route('helper-test');
       this.resource('people', function(){
-      	// this.resource('person', {path: '/:person_id'});
+        this.resource('person', {path: '/:person_id'}, function(){
+            this.route('edit', {path: '/edit'});
+        });
+        this.route('new');
       });
-
-     //  , function(){
-    	// this.route('edit');	
-    	// this.route('new');
-     //  });
     });
 
     __exports__["default"] = Router;

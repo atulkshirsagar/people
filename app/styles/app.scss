@@ -1,0 +1,12 @@
+/** Overriding bootstrap vars **/
+
+$icon-font-path: "/vendor/bootstrap-sass/vendor/assets/fonts/bootstrap/";
+
+/** End of bootstrap vars override **/
+
+@import "bootstrap";
+
+/* Put your CSS here */
+html, body {
+    margin: 20px;
+}

@@ -11,6 +11,9 @@
     "ic-ajax": "~1.0.4",
     "ember-testing-httpRespond": "~0.1.1",
     "loader.js": "git://github.com/stefanpenner/loader.js",
-    "ember-load-initializers": "git://github.com/stefanpenner/ember-load-initializers.git#0.0.1"
+    "ember-load-initializers": "git://github.com/stefanpenner/ember-load-initializers.git#0.0.1",
+    "bootstrap-sass": "twbs/bootstrap-sass",
+    "bootbox": "~4.2.0",
+    "modernizr": "~2.7.2"
   }
 }

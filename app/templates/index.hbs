@@ -1,5 +1,46 @@
+<!-- <h2 id='title'>People List</h2>
 <ul>
-{{#each}}
-  <li>{{this.fname}} {{this.lname}}</li>
-{{/each}}
-</ul>
+<li>{{this.fname}} {{this.lname}}</li>
+</ul> -->
+
+
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">People <button type="button" {{action 'add'}} class="btn btn-default"><div class="icon"><span class="glyphicon glyphicon-plus-sign"></span></div></button></div>
+  <!-- Table -->
+  <table class="table">
+    <thead>
+		<tr>
+			<th>#</th>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		{{#each}}
+		  	{{#if this.isEditing}}
+			<tr>
+				<td>{{unbound this.id}}</td>
+		  		<td>{{input class="edit" value=fname}}</td>
+		  		<td>{{input class="edit" value=lname}}</td>
+		  		<td>
+		  			<button type="button" {{action 'save' this}} class="btn btn-default"><div class="icon"><span class="glyphicon glyphicon-floppy-save"></span></div></button>
+		  			<button type="button" {{action 'cancel' this}} class="btn btn-default"><div class="icon"><span class="glyphicon glyphicon-floppy-remove"></span></div></button>
+				</td>
+			</tr>
+			{{else}}
+			<tr {{action "edit" this on="doubleClick"}}>
+				<td>{{unbound this.id}}</td>
+		  		<td>{{unbound this.fname}}</td>
+		  		<td>{{unbound this.lname}}</td>
+		  		<td>
+		  			<button type="button" {{action 'edit' this}} class="btn btn-default"><div class="icon"><span class="glyphicon glyphicon-pencil"></span></div></button>
+		  			<button type="button" {{action 'delete' this}} class="btn btn-default"><div class="icon"><span class="glyphicon glyphicon-remove-circle"></span></div></button>
+				</td>
+			</tr>
+		  	{{/if}}
+		{{/each}}
+	</tbody>
+  </table>
+</div>
